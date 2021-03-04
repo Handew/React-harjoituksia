@@ -1,9 +1,12 @@
 import './App.css';
 
-const Laskuri = () => {
+const Laskuri = ({luku, setLuku}) => {
   return (
     <div>
-        <h2>0</h2>
+        <h2>{luku}</h2>
+        <button onClick={() => setLuku(luku+ 1)}>+ 1</button>
+        <button onClick={() => setLuku(luku- 1)}>- 1</button>
+        <button onClick={() => setLuku(0)}>Nollaa laskuri</button>
     </div>
   );
 }
