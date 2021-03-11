@@ -6,7 +6,7 @@ import Customer from './Customer'
 import CustomerAdd from './CustomerAdd'
 
 
-const CustomerList = () => {
+const CustomerList = ({ setMessage, setShowMessage, setIsPositive }) => {
 
   const [customers, setCustomers] = useState([])
   const [näytetäänkö, setNäytetäänkö] = useState(false)
@@ -33,7 +33,15 @@ const CustomerList = () => {
       .then(promise => {
         setCustomers(customers.filter(filtered => filtered.id !== id))
         if (promise.status === 200) {
-          alert("Asiakas poistettu")
+          setMessage(`Asiakas poistettu`)
+            setIsPositive(true)
+            setShowMessage(true)
+                            
+            setTimeout(() => {
+                setShowMessage(false)
+            },
+                6000
+            )
         }
         //Näyttötilan uudelleen rereffaus
         setNäytetäänkö(false)
@@ -44,7 +52,7 @@ const CustomerList = () => {
   return (
     <>
       <h1 style={{ cursor: 'pointer' }} onClick={() => setNäytetäänkö(!näytetäänkö)}>customers
-      <button style={{cursor: 'pointer'}} onClick={() => setLisäystila(true)}>Add new</button>
+      <button style={{ cursor: 'pointer' }} onClick={() => setLisäystila(true)}>Add new</button>
       </h1>
 
       {/* <input value={search} onChange={handleSearchInputChange} /> */}
@@ -67,7 +75,8 @@ const CustomerList = () => {
       {!customers && <p>Loading...</p>}
 
       {lisäysTila && <CustomerAdd setLisäystila={setLisäystila} customers={customers}
-        set Customers={setCustomers} />}
+        setCustomers={setCustomers} setMessage={setMessage} setShowMessage={setShowMessage}
+        setIsPositive={setIsPositive} />}
     </>
   )
 }

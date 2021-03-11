@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import './App.css'
 import CustomerService from './services/customer'
 
-const CustomerAdd = ({ setLisäystila, setCustomers, customers }) => {
+const CustomerAdd = ({ setLisäystila, setCustomers, customers, setMessage, setShowMessage,
+    setIsPositive }) => {
 
     // State määritykset
 
@@ -39,12 +40,29 @@ const CustomerAdd = ({ setLisäystila, setCustomers, customers }) => {
         try {
             CustomerService // Käytetään services/customer tiedoston..
                 .create(newCustomer) // ..create metodia back-end http pyyntöön
-                .then(data => alert(`Lisätty ${data.data}`))
+                .then(response => console.log(response.data))
+                console.log(newCustomer.companyName)
+            setMessage(`Lisätty ${newCustomer.companyName}`)
+            setIsPositive(true)
+            setShowMessage(true)
             setCustomers(customers.concat(newCustomer))
-
+                
+            setTimeout(() => {
+                setShowMessage(false)
+            },
+                6000
+            )
         }
-        catch {
-            //alert("Error happened")
+        catch (e) {
+            setMessage(`Tapahtui virhe: ${e}`)
+            setIsPositive(false)
+            setShowMessage(true)
+
+            setTimeout(() => {
+                setShowMessage(false)
+            },
+                6000
+            )
         }
         finally {
 
@@ -61,8 +79,8 @@ const CustomerAdd = ({ setLisäystila, setCustomers, customers }) => {
             {/* inputien tapahtumankäsittelijät on funktiota, jotka saa parametrikseen
             input elementin target tiedon. Funktiot kutsuvat set state hookia parametrina target.value */}
             <div>
-                <input type="text" value={newCustomerId} placeholder="ID with 5 capital letters" 
-                maxLength="5" minLength="5"
+                <input type="text" value={newCustomerId} placeholder="ID with 5 capital letters"
+                    maxLength="5" minLength="5"
                     onChange={({ target }) => setNewCustomerId(target.value)} />
             </div>
             <div>
