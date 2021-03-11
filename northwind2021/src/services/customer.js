@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios'
 
 const baseUrl = "https://localhost:5001/api/customers"
@@ -7,4 +8,11 @@ const getAll = () => {
     return request.then(response => response.data)
 }
 
-export default { getAll }
+const create = newCustomer => {
+    return axios.post(baseUrl, newCustomer)
+}
+
+const remove = id => axios.delete(`${baseUrl}/${id}`)
+
+
+export default { getAll, create, remove }

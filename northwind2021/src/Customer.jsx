@@ -3,20 +3,27 @@ import './App.css';
 
 
 
-
-const Customer = ({ customer }) => {
+const Customer = ({ customer, handleDeleteClick }) => {
 
     const [näytäEnemmän, setNäytäEnemmän] = useState(false)
 
 
     return (
         <>
-            <h3 onMouseOver={() => setNäytäEnemmän(!näytäEnemmän)}
-                onMouseLeave={() => setNäytäEnemmän(!näytäEnemmän)}
-            >
-                {customer.companyName}
-            </h3>
-
+            <td>
+                <tr>
+                    <th>
+                        <h3 onClick={() => setNäytäEnemmän(!näytäEnemmän)}>
+                            {customer.companyName}</h3>
+                    </th>
+                    <th>
+                        <button style={{pointer: 'hover'}} onClick={() => handleDeleteClick(customer.customerId)}>Delete</button>
+                    </th>
+                    <th>
+                        <button>Edit</button>
+                    </th>
+                </tr>
+            </td>
             {näytäEnemmän && <table>
                 <thead>
                     <tr>
