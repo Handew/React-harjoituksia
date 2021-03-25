@@ -39,7 +39,7 @@ const Customer = ({ customer, handleDeleteClick, handleEditClick }) => {
 
 
 
-            {näytäEnemmän && <table>
+            {näytäEnemmän && <table class="center">
                 <thead>
                     <tr>
                         <th>Contact person</th>
@@ -51,11 +51,11 @@ const Customer = ({ customer, handleDeleteClick, handleEditClick }) => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{customer.contactName}{' | '}</td>
-                        <td>{customer.phone}{' | '}</td>
-                        <td>{customer.address}{' | '}</td>
-                        <td>{customer.city}{' | '}</td>
-                        <td>{customer.country}{' | '}</td>
+                        <td>{customer.contactName}{' '}</td>
+                        <td>{customer.phone}{' '}</td>
+                        <td>{customer.address}{' '}</td>
+                        <td>{customer.city}{' '}</td>
+                        <td>{customer.country}{' '}</td>
                     </tr>
                 </tbody>
             </table>}

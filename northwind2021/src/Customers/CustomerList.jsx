@@ -5,7 +5,7 @@ import CustomerService from "../services/customer";
 import Customer from "./Customer";
 import CustomerAdd from "./CustomerAdd";
 import CustomerEdit from "./CustomerEdit";
-import Message from "./Message";
+import Message from "../Message";
 
 const CustomerList = () => {
   const [customers, setCustomers] = useState([]);
@@ -20,16 +20,19 @@ const CustomerList = () => {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    CustomerService.getAll().then((data) => {
-      //console.log(data)
+    const token = localStorage.getItem("token")
+    CustomerService.setToken(token)
+    CustomerService
+    .getAll()
+    .then((data) => {
       setCustomers(data);
-    });
-  }, [lisäysTila, näytetäänkö, muokkausTila]);
+    })
+  }, [lisäysTila, näytetäänkö, muokkausTila])
 
   const handleSearchInputChange = (event) => {
     setNäytetäänkö(true);
     setSearch(event.target.value.toLowerCase());
-  };
+  }
 
   const handleDeleteClick = (id) => {
     //Kaivetaan esiin koko customer olio jotta alertissa voidaan näyttää companyName id:n sijaan
@@ -38,7 +41,7 @@ const CustomerList = () => {
     // Poiston varmistus kyselyikkuna
     const confirm = window.confirm(
       `Haluatko todella poistaa: ${customer.companyName}:n pysyvästi?`
-    );
+    )
 
     if (confirm) {
       CustomerService.remove(id)
@@ -81,14 +84,14 @@ const CustomerList = () => {
 
       setTimeout(() => {
         setShowMessage(false);
-      }, 4000);
+      }, 4000)
     }
-  };
+  }
 
   const handleEditClick = (customer) => {
-    setMuokattavaCustomer(customer);
-    setMuokkaustila(true);
-  };
+    setMuokattavaCustomer(customer)
+    setMuokkaustila(true)
+  }
 
   return (
     <>
