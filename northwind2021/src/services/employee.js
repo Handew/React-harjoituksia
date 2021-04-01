@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios'
 
 const baseUrl = "https://localhost:5001/api/employees"
@@ -21,8 +22,8 @@ const remove = id => {
     return axios.delete(`${baseUrl}/${id}`)
 }
 
-const update = changedEmployee => {
-    return axios.put(`${baseUrl}/${changedEmployee.employeeId}`, changedEmployee)
+const update = (id, changedEmployee) => {
+    return axios.put(`${baseUrl}/${id}`, changedEmployee)
 }
 
 

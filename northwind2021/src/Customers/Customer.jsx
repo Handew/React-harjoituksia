@@ -10,20 +10,6 @@ const Customer = ({ customer, handleDeleteClick, handleEditClick }) => {
 
     return (
         <>
-            {/* <td>
-                <tr>
-                    <th>
-                        <h3 onClick={() => setNäytäEnemmän(!näytäEnemmän)}>
-                            {customer.companyName}</h3>
-                    </th>
-                    <th>
-                        <button style={{pointer: 'hover'}} onClick={() => handleDeleteClick(customer.customerId)}>Delete</button>
-                    </th>
-                    <th>
-                        <button onClick={() => handleEditClick(customer)}>Edit</button>
-                    </th>
-                </tr>
-            </td> */}
             <h3><nobr
                 onClick={() => setNäytäEnemmän(!näytäEnemmän)}
             >
@@ -37,9 +23,7 @@ const Customer = ({ customer, handleDeleteClick, handleEditClick }) => {
 
             </h3>
 
-
-
-            {näytäEnemmän && <table class="center">
+            {näytäEnemmän && <table className="center">
                 <thead>
                     <tr>
                         <th>Contact person</th>

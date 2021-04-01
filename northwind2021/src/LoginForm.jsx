@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './App.css'
 import AuthService from './services/auth'
-import md5 from 'md5'
 
 const LoginForm = ({ currentUser, setCurrentUser }) => {
     // Login lomakkeen kenttiä vastaavat statet

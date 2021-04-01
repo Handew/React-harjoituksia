@@ -40,7 +40,6 @@ const CustomerAdd = ({ setLisäystila, setCustomers, customers, setMessage, setS
         const jwt = localStorage.getItem("token")
         CustomerService.setToken(jwt)
 
-
         try {
             CustomerService // Käytetään services/customer tiedoston..
                 .create(newCustomer) // ..create metodia back-end http pyyntöön
