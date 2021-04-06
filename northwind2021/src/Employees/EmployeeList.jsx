@@ -1,35 +1,37 @@
 /* eslint-disable array-callback-return */
-import React, { useState, useEffect } from "react";
-import "../App.css";
-import EmployeeService from "../services/employee";
-import Employee from "./Employee";
-import EmployeeAdd from "./EmployeeAdd";
-import EmployeeEdit from "./EmployeeEdit";
-import Message from "../Message";
+import React, { useState, useEffect } from "react"
+import "../App.css"
+import EmployeeService from "../services/employee"
+import Employee from "./Employee"
+import EmployeeAdd from "./EmployeeAdd"
+import EmployeeEdit from "./EmployeeEdit"
+import Message from "../Message"
 
 const EmployeeList = () => {
-  const [employees, setEmployees] = useState([]);
-  const [lisäysTila, setLisäystila] = useState(false);
-  const [muokkausTila, setMuokkaustila] = useState(false);
-  const [muokattavaEmployee, setMuokattavaEmployee] = useState({});
+  const [employees, setEmployees] = useState([])
+  const [lisäysTila, setLisäystila] = useState(false)
+  const [muokkausTila, setMuokkaustila] = useState(false)
+  const [muokattavaEmployee, setMuokattavaEmployee] = useState({})
 
-  const [showMessage, setShowMessage] = useState(false);
-  const [isPositive, setIsPositive] = useState(false);
-  const [message, setMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false)
+  const [isPositive, setIsPositive] = useState(false)
+  const [message, setMessage] = useState("")
 
   useEffect(() => {
+    const token = localStorage.getItem("token")
+    EmployeeService.setToken(token)
     EmployeeService.getAll().then((data) => {
-      setEmployees(data);
-    });
-  }, [lisäysTila, muokkausTila]);
+      setEmployees(data)
+    })
+  }, [lisäysTila, muokkausTila])
 
   const handleDeleteClick = (id) => {
-    const employee = employees.find((employee) => employee.employeeId === id);
+    const employee = employees.find((employee) => employee.employeeId === id)
 
     // Poiston varmistus kyselyikkuna
     const confirm = window.confirm(
       `Haluatko todella poistaa: ${employee.lastName}:n pysyvästi?`
-    );
+    )
 
     if (confirm) {
       EmployeeService.remove(id)
@@ -40,43 +42,43 @@ const EmployeeList = () => {
               employees.filter((filtered) => filtered.employeeId !== id)
             );
 
-            setMessage(`${employee.lastName}:n poisto onnnistui!`);
-            setIsPositive(true);
-            setShowMessage(true);
-            window.scrollBy(0, -10000);
+            setMessage(`${employee.lastName}:n poisto onnnistui!`)
+            setIsPositive(true)
+            setShowMessage(true)
+            window.scrollBy(0, -10000)
 
             setTimeout(() => {
-              setShowMessage(false);
+              setShowMessage(false)
             }, 4000);
           }
         })
 
         .catch((error) => {
-          console.log(error);
-          setMessage(`Tapahtui virhe: ${error}.`);
-          setIsPositive(false);
-          setShowMessage(true);
+          console.log(error)
+          setMessage(`Tapahtui virhe: ${error}.`)
+          setIsPositive(false)
+          setShowMessage(true)
 
           setTimeout(() => {
-            setShowMessage(false);
-          }, 7000);
-        });
+            setShowMessage(false)
+          }, 7000)
+        })
     } else {
       // JOS KÄYTTÄJÄ EI VAHVISTANUT POISTOA:
-      setMessage("Poisto peruutettu");
-      setIsPositive(true);
-      setShowMessage(true);
+      setMessage("Poisto peruutettu")
+      setIsPositive(true)
+      setShowMessage(true)
 
       setTimeout(() => {
-        setShowMessage(false);
-      }, 4000);
+        setShowMessage(false)
+      }, 4000)
     }
-  };
+  }
 
   const handleEditClick = (employee) => {
-    setMuokattavaEmployee(employee);
-    setMuokkaustila(true);
-  };
+    setMuokattavaEmployee(employee)
+    setMuokkaustila(true)
+  }
 
   return (
     <>
@@ -144,7 +146,7 @@ const EmployeeList = () => {
         )}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default EmployeeList;
+export default EmployeeList

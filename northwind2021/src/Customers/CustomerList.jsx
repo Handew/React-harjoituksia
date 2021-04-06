@@ -1,23 +1,23 @@
 /* eslint-disable array-callback-return */
-import React, { useState, useEffect } from "react";
-import "../App.css";
-import CustomerService from "../services/customer";
-import Customer from "./Customer";
-import CustomerAdd from "./CustomerAdd";
-import CustomerEdit from "./CustomerEdit";
-import Message from "../Message";
+import React, { useState, useEffect } from "react"
+import "../App.css"
+import CustomerService from "../services/customer"
+import Customer from "./Customer"
+import CustomerAdd from "./CustomerAdd"
+import CustomerEdit from "./CustomerEdit"
+import Message from "../Message"
 
 const CustomerList = () => {
-  const [customers, setCustomers] = useState([]);
-  const [näytetäänkö, setNäytetäänkö] = useState(false);
-  const [search, setSearch] = useState("");
-  const [lisäysTila, setLisäystila] = useState(false);
-  const [muokkausTila, setMuokkaustila] = useState(false);
-  const [muokattavaCustomer, setMuokattavaCustomer] = useState({}); // yksi customer olio
+  const [customers, setCustomers] = useState([])
+  const [näytetäänkö, setNäytetäänkö] = useState(false)
+  const [search, setSearch] = useState("")
+  const [lisäysTila, setLisäystila] = useState(false)
+  const [muokkausTila, setMuokkaustila] = useState(false)
+  const [muokattavaCustomer, setMuokattavaCustomer] = useState({}) // yksi customer olio
 
-  const [showMessage, setShowMessage] = useState(false);
-  const [isPositive, setIsPositive] = useState(false);
-  const [message, setMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false)
+  const [isPositive, setIsPositive] = useState(false)
+  const [message, setMessage] = useState("")
 
   useEffect(() => {
     const token = localStorage.getItem("token")
@@ -25,18 +25,18 @@ const CustomerList = () => {
     CustomerService
     .getAll()
     .then((data) => {
-      setCustomers(data);
+      setCustomers(data)
     })
   }, [lisäysTila, näytetäänkö, muokkausTila])
 
   const handleSearchInputChange = (event) => {
-    setNäytetäänkö(true);
-    setSearch(event.target.value.toLowerCase());
+    setNäytetäänkö(true)
+    setSearch(event.target.value.toLowerCase())
   }
 
   const handleDeleteClick = (id) => {
     //Kaivetaan esiin koko customer olio jotta alertissa voidaan näyttää companyName id:n sijaan
-    const customer = customers.find((cust) => cust.customerId === id);
+    const customer = customers.find((cust) => cust.customerId === id)
 
     // Poiston varmistus kyselyikkuna
     const confirm = window.confirm(
@@ -52,38 +52,38 @@ const CustomerList = () => {
               customers.filter((filtered) => filtered.customerId !== id)
             );
 
-            setMessage(`${customer.companyName}:n poisto onnistui!`);
-            setIsPositive(true);
-            setShowMessage(true);
-            window.scrollBy(0, -10000); // Scrollataan ylös jotta nähdään alert :)
+            setMessage(`${customer.companyName}:n poisto onnistui!`)
+            setIsPositive(true)
+            setShowMessage(true)
+            window.scrollBy(0, -10000) // Scrollataan ylös jotta nähdään alert :)
 
             setTimeout(() => {
-              setShowMessage(false);
-            }, 4000);
+              setShowMessage(false)
+            }, 4000)
           }
         })
 
         .catch((error) => {
-          console.log(error);
+          console.log(error)
           setMessage(
             `Tapahtui virhe: ${error}. Onkohan asiakkaalla tilauksia?`
           );
-          setIsPositive(false);
-          setShowMessage(true);
-          setNäytetäänkö(false);
+          setIsPositive(false)
+          setShowMessage(true)
+          setNäytetäänkö(false)
 
           setTimeout(() => {
-            setShowMessage(false);
-          }, 7000);
-        });
+            setShowMessage(false)
+          }, 7000)
+        })
     } else {
       // JOS KÄYTTÄJÄ EI VAHVISTANUT POISTOA:
-      setMessage("Poisto peruutettu");
-      setIsPositive(true);
-      setShowMessage(true);
+      setMessage("Poisto peruutettu")
+      setIsPositive(true)
+      setShowMessage(true)
 
       setTimeout(() => {
-        setShowMessage(false);
+        setShowMessage(false)
       }, 4000)
     }
   }
@@ -165,7 +165,7 @@ const CustomerList = () => {
         )}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CustomerList;
+export default CustomerList

@@ -1,23 +1,23 @@
 /* eslint-disable array-callback-return */
-import React, { useState, useEffect } from "react";
-import "../App.css";
-import ProductService from "../services/product";
-import Product from "./Product";
-import ProductAdd from "./ProductAdd";
-import ProductEdit from "./ProductEdit";
-import Message from "../Message";
+import React, { useState, useEffect } from "react"
+import "../App.css"
+import ProductService from "../services/product"
+import Product from "./Product"
+import ProductAdd from "./ProductAdd"
+import ProductEdit from "./ProductEdit"
+import Message from "../Message"
 
 const ProductList = () => {
-  const [products, setProducts] = useState([]);
-  const [näytetäänkö, setNäytetäänkö] = useState(false);
-  const [search, setSearch] = useState("");
-  const [lisäysTila, setLisäystila] = useState(false);
-  const [muokkausTila, setMuokkaustila] = useState(false);
-  const [muokattavaProduct, setMuokattavaProduct] = useState({}); // yksi product olio
+  const [products, setProducts] = useState([])
+  const [näytetäänkö, setNäytetäänkö] = useState(false)
+  const [search, setSearch] = useState("")
+  const [lisäysTila, setLisäystila] = useState(false)
+  const [muokkausTila, setMuokkaustila] = useState(false)
+  const [muokattavaProduct, setMuokattavaProduct] = useState({}) // yksi product olio
 
-  const [showMessage, setShowMessage] = useState(false);
-  const [isPositive, setIsPositive] = useState(false);
-  const [message, setMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false)
+  const [isPositive, setIsPositive] = useState(false)
+  const [message, setMessage] = useState("")
 
   useEffect(() => {
     const token = localStorage.getItem("token")
@@ -25,13 +25,13 @@ const ProductList = () => {
     ProductService
     .getAll()
     .then((data) => {
-      setProducts(data);
+      setProducts(data)
     })
   }, [lisäysTila, näytetäänkö, muokkausTila])
 
   const handleSearchInputChange = (event) => {
     setNäytetäänkö(true);
-    setSearch(event.target.value.toLowerCase());
+    setSearch(event.target.value.toLowerCase())
   }
 
   const handleDeleteClick = (id) => {
@@ -50,40 +50,40 @@ const ProductList = () => {
             // Poistetaan product statesta
             setProducts(
               products.filter((filtered) => filtered.productId !== id)
-            );
+            )
 
             setMessage(`${product.productName}:n poisto onnistui!`);
-            setIsPositive(true);
-            setShowMessage(true);
+            setIsPositive(true)
+            setShowMessage(true)
             window.scrollBy(0, -10000); // Scrollataan ylös jotta nähdään alert :)
 
             setTimeout(() => {
-              setShowMessage(false);
-            }, 4000);
+              setShowMessage(false)
+            }, 4000)
           }
         })
 
         .catch((error) => {
-          console.log(error);
+          console.log(error)
           setMessage(
             `Tapahtui virhe: ${error}. Onkohan tuotteella tilauksia?`
-          );
-          setIsPositive(false);
-          setShowMessage(true);
-          setNäytetäänkö(false);
+          )
+          setIsPositive(false)
+          setShowMessage(true)
+          setNäytetäänkö(false)
 
           setTimeout(() => {
-            setShowMessage(false);
-          }, 7000);
-        });
+            setShowMessage(false)
+          }, 7000)
+        })
     } else {
       // JOS KÄYTTÄJÄ EI VAHVISTANUT POISTOA:
-      setMessage("Poisto peruutettu");
-      setIsPositive(true);
-      setShowMessage(true);
+      setMessage("Poisto peruutettu")
+      setIsPositive(true)
+      setShowMessage(true)
 
       setTimeout(() => {
-        setShowMessage(false);
+        setShowMessage(false)
       }, 4000)
     }
   }
@@ -127,7 +127,7 @@ const ProductList = () => {
           !lisäysTila &&
           !muokkausTila &&
           products.map((product) => {
-            const lowerCaseName = product.productName.toLowerCase();
+            const lowerCaseName = product.productName.toLowerCase()
             if (lowerCaseName.indexOf(search) > -1) {
               return (
                 <Product
@@ -165,7 +165,7 @@ const ProductList = () => {
         )}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ProductList;
+export default ProductList

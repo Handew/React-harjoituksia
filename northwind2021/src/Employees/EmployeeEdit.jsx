@@ -25,8 +25,9 @@ const EmployeeEdit = ({ setMuokkaustila, setEmployees, employees, setMessage, se
     const submitEmployee = (event) => {
         event.preventDefault()
         var changedEmployee = {
-            fistName: newFirstName,
+            
             lastName: newLastName,
+            firstName: newFirstName,
             title: newTitle,
             country: newCountry,
             address: newAddress,

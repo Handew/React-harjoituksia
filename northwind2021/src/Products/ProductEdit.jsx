@@ -46,7 +46,7 @@ const ProductEdit = ({ setMuokkaustila, setProducts, products, setMessage, setSh
 
                     const id = changedProduct.productId
 
-                    // Poistetaan ensin vanha customer statesta
+                    // Poistetaan ensin vanha product statesta
                     setProducts(products.filter(filtered => filtered.productId !== id))
 
                     // Ja lisätään uudestaan muuttuneilla tiedoilla

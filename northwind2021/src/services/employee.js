@@ -23,7 +23,10 @@ const remove = id => {
 }
 
 const update = (id, changedEmployee) => {
-    return axios.put(`${baseUrl}/${id}`, changedEmployee)
+    const config = {
+        headers: { Authorization: token },
+    }
+    return axios.put(`${baseUrl}/${id}`, changedEmployee, config)
 }
 
 
