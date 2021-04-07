@@ -1,5 +1,6 @@
 {
   "name": "northwind2021",
+  "homepage": "http://www.sharewell.fi/react2020/oppilas106/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

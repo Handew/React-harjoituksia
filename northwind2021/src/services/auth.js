@@ -1,7 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios'
 
-const url = "https://localhost:5001/api/authentication"
+const url = "https://restapi2021.azurewebsites.net/api/authentication"
 
 const authenticate = (userForAuth) => {
     const request = axios.post(url, userForAuth)

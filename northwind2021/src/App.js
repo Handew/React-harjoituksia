@@ -35,10 +35,10 @@ if (currentUser) {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Link to={'/Customers/CustomerList'} className="nav-link">Customers</Link>
-              <Link to={'/Logins/LoginList'} className="nav-link">Logins</Link>
-              <Link to={'/Products/ProductList'} className="nav-link">Products</Link>
-              <Link to={'/Employees/EmployeeList'} className="nav-link">Employees</Link>
+              <Link to={'/react2020/oppilas106/Customers/CustomerList'} className="nav-link">Customers</Link>
+              <Link to={'/react2020/oppilas106/Logins/LoginList'} className="nav-link">Logins</Link>
+              <Link to={'/react2020/oppilas106/Products/ProductList'} className="nav-link">Products</Link>
+              <Link to={'/react2020/oppilas106/Employees/EmployeeList'} className="nav-link">Employees</Link>
 
             </Nav>
             <Nav>
@@ -48,11 +48,11 @@ if (currentUser) {
         </Navbar>
 
         <Switch>
-          <Route path="/Customers" component={CustomerList} />
-          <Route path="/Logins" component={LoginList} />
-          <Route path="/Products" component={ProductList} />
-          <Route path="/Employees" component={EmployeeList} />
-          <Route path="/" component={Homepage} />
+          <Route path="/react2020/oppilas106/Customers" component={CustomerList} />
+          <Route path="/react2020/oppilas106/Logins" component={LoginList} />
+          <Route path="/react2020/oppilas106/Products" component={ProductList} />
+          <Route path="/react2020/oppilas106/Employees" component={EmployeeList} />
+          <Route path="/react2020/oppilas106/" component={Homepage} />
           
         </Switch>
       </Router>
@@ -66,7 +66,7 @@ else{
         <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
         <Navbar.Brand href="#home">Northwind</Navbar.Brand>
           <Nav className="mr-auto">
-            <Link to={'/'} className='nav-link'>Home</Link>
+            <Link to={'/react2020/oppilas106/'} className='nav-link'>Home</Link>
           </Nav>
           <Nav>
             <LoginForm currentUser={currentUser} setCurrentUser={setCurrentUser} />
@@ -74,7 +74,7 @@ else{
         </Navbar>
 
           <Switch>
-            <Route path='/' component={Homepage} />
+            <Route path='/react2020/oppilas106/' component={Homepage} />
           </Switch>
       </Router>
       

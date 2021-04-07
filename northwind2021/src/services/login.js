@@ -1,7 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios'
 
-const baseUrl = "https://localhost:5001/api/logins"
+const baseUrl = "https://restapi2021.azurewebsites.net/api/logins"
 
 const getAll = () => {
     const request = axios.get(baseUrl)
