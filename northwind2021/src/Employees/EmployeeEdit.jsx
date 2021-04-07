@@ -9,7 +9,6 @@ const EmployeeEdit = ({ setMuokkaustila, setEmployees, employees, setMessage, se
     // Se alkutila tulee myös input kenttiin alkutilaksi, koska input kentän sisältö on sidottu näihin state:hin.
     // Input kentän muutos muuttaa kyseistä statea samoin kuin add komponentissakin tapahtui.
 
-    // const [newEmployeeId, setNewEmployeeId] = useState(muokattavaEmployee.employeeId)
     const [newFirstName, setNewFirstName] = useState(muokattavaEmployee.firstName)
     const [newLastName, setNewLastName] = useState(muokattavaEmployee.lastName)
     const [newTitle, setNewTitle] = useState(muokattavaEmployee.title)

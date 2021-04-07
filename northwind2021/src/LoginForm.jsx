@@ -43,7 +43,7 @@ const LoginForm = ({ currentUser, setCurrentUser }) => {
 
     const logout = () => {
         localStorage.clear()
-        window.location.reload()
+        window.location.reload("/react2020/oppilas106/")
     }
 
     // Empty napin painallus ajaa tämän
@@ -67,8 +67,6 @@ const LoginForm = ({ currentUser, setCurrentUser }) => {
                     <button id="nappi"  onClick={emptyFields}>Empty</button>
 
                 </form>
-
-
             </>
         )
     }
